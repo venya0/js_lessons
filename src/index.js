@@ -1,22 +1,24 @@
-import './assets/sass/main.sass'
-import getProductList from './mock/data'
-import renderGoodsList from './showcase';
-import { send } from './utils';
+import ApiHandler from "./ApiHandler";
+import CartModel from "./CartModel";
+import ShowcaseModel from "./ShowcaseModel";
+import EventEmitter from "./EventEmitter";
 
 const API_URL = 'http://localhost:3000/api/v1'
 
-let productList = [];
-let cart = [];
+const api = new ApiHandler(API_URL)
+const eventEmitter = new EventEmitter()
 
-send((error) => { console.log(err) }, (res) => {
-    let list = JSON.parse(res);
-    productList = list;
-    renderGoodsList(productList);
-}, `${API_URL}/catalog`)
+const cart = new CartModel(api, eventEmitter)
 
-let buyed = {id: 5, title: "new", price: 999}
+const showcase = new ShowcaseModel(api, eventEmitter, cart)
 
-send((err) => { console.log(err) }, (res) => {
-    cart.push(buyed)
-}, `${API_URL}/cart`, 'POST', JSON.stringify(buyed), {"Content-Type": "application/json"})
+eventEmitter.subscribe('showcaseFetched', (data) => {
+    console.log(data)
+})
 
+eventEmitter.subscribe('cartFetched', (data) => {
+    console.log(data)
+})
+
+showcase.fetch()
+cart.fetch()
