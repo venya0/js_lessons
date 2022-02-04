@@ -1,0 +1,66 @@
+header
+    display: flex
+    justify-content: space-between
+    margin-bottom: 100px
+
+.fas
+    font-size: 100px
+    color: #00ff15    
+
+.photo
+    background-color: green
+    height: 150px
+    width: 265px
+
+.container
+    padding: 0
+    margin: 0 auto
+    width: 1140px
+
+.shop
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    margin-top: 100px
+
+.product
+    display: flex
+    flex-direction: column
+    justify-content: center
+    width: 265px
+    margin-bottom: 50px 
+    position: relative
+    background-color: #76dfb7
+    &:hover
+        box-shadow: 0px 5px 8px 0 rgba(0, 0, 0, 0.16)
+    &:hover .add-cart
+        display: flex
+
+.description
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding-left: 5px
+    padding-right: 5px
+
+.add-cart
+    position: absolute
+    display: none
+    width: 100%
+
+.add
+    display: flex
+    justify-content: space-between
+    width: 100%
+    text-decoration: none
+    margin-left: 20px
+    margin-right: 20px
+
+.add-to-cart
+    font-size: 15px
+    color: #ff0000
+    line-height: 3
+
+.fa-cart-plus
+    font-size: 35px
+    line-height: 2
